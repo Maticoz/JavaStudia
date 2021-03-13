@@ -4,17 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Human   human = new Human();
-        Car     car   = new Car("XYZ");
-        car.producer  = "VW";
+        Human   human       = new Human();
 
-        human.setCar(car);
+        System.out.println("Obecne wynagrodzenie: ");
+        System.out.println(human.getSalary());
 
-        System.out.println("Auto");
-        System.out.println(human.getCar().producer);
-        System.out.println(human.getCar().model);
+        human.setSalary(3000.0);
+        System.out.println("Wynagrodzenie po podwyzce: ");
+        System.out.println(human.getSalary());
 
 
+        System.out.println("Obecne wynagrodzenie: ");
+        System.out.println(human.getSalary());
 
     }
 }
