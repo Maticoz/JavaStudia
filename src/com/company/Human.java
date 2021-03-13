@@ -1,6 +1,8 @@
 package com.company;
 
 public class Human {
-    public String firstName;
-    public String lastName;
+    String      firstName;
+    String      lastName;
+    String      gender;
+    Integer     age;
 }
