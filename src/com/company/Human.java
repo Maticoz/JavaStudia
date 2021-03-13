@@ -19,7 +19,20 @@ public class Human {
     }
 
     public void setCar(Car car) {
-        this.car = car;
+        if(this.salary >= car.price)
+        {
+            System.out.println("Udalo sie kupic za gotówke! :D");
+            this.car = car;
+        }
+        else if((this.salary * 12) >= car.price  )
+        {
+            System.out.println("Udalo sie kupic na kredyt!");
+            this.car = car;
+        }
+        else
+        {
+            System.out.println("Nie stac Cie na te auto, zmien prace/idz po podwyzke");
+        }
     }
 
     public Double getSalary() {

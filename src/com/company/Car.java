@@ -5,6 +5,7 @@ public class Car {
     String                  producer;
     String                  color;
     Double                  engineCapacity;
+    Double                  price;
 
     public Car(String model) {
         this.model = model;
