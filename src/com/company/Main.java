@@ -4,19 +4,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Animal dog = new Animal(Animal.CAT);
-        dog.name = "Mruczek";
-        System.out.println("Kot: ");
-        System.out.println(dog.species);
-        System.out.println(dog.name);
+        Human   human = new Human();
+        Car     car   = new Car("XYZ");
+        car.producer  = "VW";
 
-        dog.feed();
+        human.setCar(car);
 
-        dog.takeForAWalk();
-        dog.takeForAWalk();
-        dog.takeForAWalk();
-        dog.takeForAWalk();
-        dog.takeForAWalk();
+        System.out.println("Auto");
+        System.out.println(human.getCar().producer);
+        System.out.println(human.getCar().model);
+
+
 
     }
 }
