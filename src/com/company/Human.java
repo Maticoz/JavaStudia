@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.devices.Car;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +14,7 @@ public class Human {
     private Double      previousSalary;
     private Date        salaryGetAt;
 
-    private Car         car;
+    private Car car;
 
     public Car getCar() {
         return car;
