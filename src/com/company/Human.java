@@ -1,11 +1,11 @@
 package com.company;
 
+import com.company.creatures.Animal;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 public class Human {
@@ -20,7 +20,7 @@ public class Human {
 
     private Car     car;
     private Phone   phone;
-    private Animal  animal;
+    private Animal animal;
 
     public Car getCar() {
         return car;

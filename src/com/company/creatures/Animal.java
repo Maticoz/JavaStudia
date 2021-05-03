@@ -1,15 +1,19 @@
-package com.company;
+package com.company.creatures;
+import com.company.Human;
+import com.company.Salleable;
+
 import java.io.File;
 
-public class Animal implements Salleable{
+public abstract class Animal implements Salleable, Feedable {
     public static final String DOG  =    "DOG";
     public static final String LION =   "LION";
     public static final String CAT  =    "CAT";
+    public static final String RABBIT = "RABBIT";
 
-    String name;
-    private Double weight;
+    protected String name;
+    protected Double weight;
     public final String species;
-    File pic;
+    protected File pic;
 
     public Animal(String species)
     {
@@ -19,6 +23,16 @@ public class Animal implements Salleable{
 
     public void feed() {
         this.weight += 1.0;
+        System.out.println("Wrrr...");
+    }
+    public void feed(Double foodWeight)
+    {
+        if(foodWeight <= 0.0)
+        {
+            System.out.println("Nie mozesz nakarmic czyms co nie istnieje");
+            return;
+        }
+        this.weight += foodWeight;
         System.out.println("Wrrr...");
     }
     public void takeForAWalk() {
@@ -72,11 +86,17 @@ public class Animal implements Salleable{
                 this.weight = 2.0;
                 break;
             }
+            case RABBIT:
+            {
+                this.weight = 0.5;
+                break;
+            }
             default: {
                 break;
             }
         }
 
     }
+
 
 }
