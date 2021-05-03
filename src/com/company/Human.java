@@ -1,9 +1,12 @@
 package com.company;
 
 import com.company.devices.Car;
+import com.company.devices.Phone;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 public class Human {
     String      firstName;
@@ -13,12 +16,17 @@ public class Human {
     private Double      salary = 0.0;
     private Double      previousSalary;
     private Date        salaryGetAt;
+    private Double      cash = 0.0;
 
-    private Car car;
+    private Car     car;
+    private Phone   phone;
+    private Animal  animal;
 
     public Car getCar() {
         return car;
     }
+    public Phone getPhone() { return phone; }
+    public Animal getAnimal() { return animal; }
 
     public void setCar(Car car) {
         if(this.salary >= car.price)
@@ -35,6 +43,22 @@ public class Human {
         {
             System.out.println("Nie stac Cie na te auto, zmien prace/idz po podwyzke");
         }
+    }
+
+    public void setPhone(Phone phone){
+        this.phone = phone;
+    }
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public Double getCash()
+    {
+        return this.cash;
+    }
+    public void setCash(Double _cash)
+    {
+        this.cash = _cash;
     }
 
     public Double getSalary() {

@@ -1,7 +1,7 @@
 package com.company;
 import java.io.File;
 
-public class Animal {
+public class Animal implements Salleable{
     public static final String DOG  =    "DOG";
     public static final String LION =   "LION";
     public static final String CAT  =    "CAT";
@@ -30,6 +30,27 @@ public class Animal {
         }
         System.out.println("Grrr....");
 
+    }
+
+    public void sell(Human seller, Human buyer, Double price)
+    {
+        if(seller.getAnimal() != this)
+        {
+            System.out.println("Sprzedajacy nie posiada takiego zwierzecia.");
+            return;
+        }
+        if(buyer.getCash() < price)
+        {
+            System.out.println("Kupujacy nie posiada wystarczajacej ilosci pieniedzy.");
+            return;
+        }
+
+        buyer.setAnimal(seller.getAnimal());
+        seller.setAnimal(null);
+
+        seller.setCash(seller.getCash() + price);
+        buyer.setCash(buyer.getCash() - price);
+        System.out.println("Transakcja sprzedazy przebiegla pomyslnie...");
     }
 
     protected void setWeightSpecies()
