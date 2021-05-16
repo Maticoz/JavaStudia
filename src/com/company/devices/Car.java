@@ -8,8 +8,10 @@ public abstract class Car extends Device {
     public Double                  engineCapacity;
     public Double                  price;
 
-    public Car(String model) {
+    public Car(String model, Double _value, Integer _yeafOfProduction) {
         this.model = model;
+        this.value = _value;
+        this.yearOfProduction = _yeafOfProduction;
     }
 
 
@@ -26,21 +28,22 @@ public abstract class Car extends Device {
         System.out.println("Odpalam samochód");
     }
 
-    public void sell(Human seller, Human buyer, Double price)
-    {
-        if(seller.getCar() != this)
+    public void sell(Human seller, Integer _sellerGaragePlace, Human buyer, Integer _buyerGaragePlace, Double price) throws Exception {
+        if(seller.getCar(_sellerGaragePlace) != this)
         {
-            System.out.println("Sprzedajacy nie posiada takiego samochodu.");
-            return;
+            throw new Exception("Sprzedajacy nie posiada takiego samochodu.");
+        }
+        if(buyer.findEmptyGarageSlot() == -1)
+        {
+            throw new Exception("Kupujacy nie ma miejsca w garazu.");
         }
         if(buyer.getCash() < price)
         {
-            System.out.println("Kupujacy nie posiada wystarczajacej ilosci pieniedzy.");
-            return;
+            throw new Exception("Kupujacy nie posiada wystarczajacej ilosci pieniedzy");
         }
 
-        buyer.setCar(seller.getCar());
-        seller.setCar(null);
+        buyer.setCar(_buyerGaragePlace, seller.getCar(_sellerGaragePlace));
+        seller.setCarInGarage(_sellerGaragePlace, null);
 
         seller.setCash(seller.getCash() + price);
         buyer.setCash(buyer.getCash() - price);

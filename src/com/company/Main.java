@@ -12,44 +12,41 @@ public class Main {
 
     public static void main(String[] args) throws MalformedURLException {
 
+        Human seller = new Human("Marek","Kowalski","male",21,4);
+        seller.setCash(99999.0);
+        seller.setSalary(9999.0);
+        Human buyer = new Human("Marek","Kowalski","male",21,1);
+        buyer.setCash(99999.0);
+        buyer.setSalary(9999.0);
 
-        Pet pet = new Pet(Animal.DOG);
-        FarmAnimal farmAnimal = new FarmAnimal(Animal.RABBIT);
+        Car tesla = new Diesel("Tesla", 800.0, 2017);
+        tesla.price = 1.0;
+        Car audi  = new LPG("Audi", 999.0, 2001);
+        audi.price = 1.0;
+        Car bmw   = new Electric("BMW", 700.0, 1997);
+        bmw.price = 1.0;
 
-        farmAnimal.feed();
-        farmAnimal.feed(3.0);
-        farmAnimal.feed(-3.0);
-        farmAnimal.beEaten();
-        farmAnimal.beEaten();
-
-        pet.feed();
-        pet.takeForAWalk();
-
-
-        URL page1BottomURL = new URL("https://www.google.com/");
-        String[] apps = {"Facebook", "Hangouts"};
-
-        Phone phone = new Phone();
-        phone.yearOfProduction = "2018";
-        phone.model = "S10";
-        phone.screenSize = 6.4;
-        phone.producer = "Samsung";
-
-        phone.installAnnApp("Nazwa");
-        phone.installAnnApp(page1BottomURL);
-        phone.installAnnApp(apps);
-        phone.installAnnApp("Facebook",1.5);
-        phone.installAnnApp("Twitter",1.7,"https://www.google.com");
+        seller.setCash(9999.0);
+        seller.setSalary(9999.0);
+        seller.setCar(0, tesla);
+        seller.setCar(1, audi);
+        seller.setCar(3, bmw);
+        seller.garageQueue();
+        seller.sortGarage();
+        seller.garageQueue();
 
 
-        Car tesla = new Diesel("Tesla");
-        Car audi  = new LPG("Audi");
-        Car bmw   = new Electric("BMW");
+        try {
+            bmw.sell(seller, 1, buyer, 0, 1.0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Integer empty = buyer.findEmptyGarageSlot();
+
+        System.out.println(String.format("Wartosc garazu to %s", buyer.getCarsValue().toString()));
 
 
-        tesla.refuel();
-        audi.refuel();
-        bmw.refuel();
 
     }
 }
