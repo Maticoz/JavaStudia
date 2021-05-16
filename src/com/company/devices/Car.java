@@ -2,7 +2,7 @@ package com.company.devices;
 
 import com.company.Human;
 
-public class Car extends Device {
+public abstract class Car extends Device {
 
     public String                  color;
     public Double                  engineCapacity;
@@ -46,4 +46,5 @@ public class Car extends Device {
         buyer.setCash(buyer.getCash() - price);
         System.out.println("Transakcja sprzedazy przebiegla pomyslnie...");
     }
+    public abstract void refuel();
 }
