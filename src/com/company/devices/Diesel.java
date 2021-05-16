@@ -1,10 +1,12 @@
 package com.company.devices;
 
+import com.company.Human;
+
 public class Diesel extends Car{
 
 
-    public Diesel(String model, Double _value, Integer _yeafOfProduction) {
-        super(model, _value, _yeafOfProduction);
+    public Diesel(String model, Double _value, Integer _yeafOfProduction, Human _owner) {
+        super(model, _value, _yeafOfProduction, _owner);
     }
 
     @Override
