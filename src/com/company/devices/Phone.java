@@ -1,8 +1,12 @@
 package com.company.devices;
 
 import com.company.Human;
-
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Collections;
+
 
 public class Phone extends Device{
 
@@ -13,6 +17,7 @@ public class Phone extends Device{
     public static final String APPS_PROTOCOL = "https://";
     public static final String APPS_VERSION = "1.0.0";
 
+    public List<Application> appList = new ArrayList<>();
 
     public String toString() {
         return "Model: " + this.model +
@@ -68,5 +73,100 @@ public class Phone extends Device{
     public void installAnnApp(URL appUrl)
     {
         System.out.println(String.format("Zainstalowano aplikacje z url %s", (APPS_PROTOCOL + appUrl)));
+    }
+
+    public void installApplication(Human _owner, Application _app) {
+        if(_owner.getCash() < _app.price)
+        {
+            System.out.println("Nie stać Cie na tą aplikacje.");
+            return;
+        }
+
+        this.appList.add(_app);
+        _owner.setCash(_owner.getCash() - _app.price);
+    }
+    public boolean hasApplication(Application _app)
+    {
+        Enumeration<Application> e = Collections.enumeration(appList);
+        while(e.hasMoreElements()) {
+            if(e.nextElement() == _app)
+                return true;
+        }
+
+        return false;
+    }
+    public boolean hasApplication(String _name)
+    {
+        Enumeration<Application> e = Collections.enumeration(appList);
+        while(e.hasMoreElements()) {
+            if(e.nextElement().name == _name)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void printFreeApplications()
+    {
+        printAllApplications(true);
+    }
+    public void printAllApplications()
+    {
+        printAllApplications(false);
+    }
+    public Double getPriceAllApp()
+    {
+        Application app;
+        Double      _sum = 0.0;
+        Enumeration<Application> e = Collections.enumeration(appList);
+        while(e.hasMoreElements()) {
+            app = e.nextElement();
+            _sum+= app.price;
+        }
+        return _sum;
+    }
+
+    public void printAppsAlphabetically() {
+        List<Application> tmp = new ArrayList<>();
+        tmp = this.appList;
+        tmp.sort(new AlphabeticallyAppSorter());
+
+        Application app;
+        Enumeration<Application> e = Collections.enumeration(tmp);
+        while(e.hasMoreElements()) {
+            app = e.nextElement();
+            System.out.println(app.name);
+        }
+    }
+    public void printAppsPrice() {
+        List<Application> tmp = new ArrayList<>();
+        tmp = this.appList;
+        tmp.sort(new PriceAppSorter());
+
+        Application app;
+        Enumeration<Application> e = Collections.enumeration(tmp);
+        while(e.hasMoreElements()) {
+            app = e.nextElement();
+            System.out.println(app.name + " - " + app.price.toString());
+        }
+    }
+    protected void printAllApplications(boolean _onlyFree)
+    {
+        Application app;
+        Enumeration<Application> e = Collections.enumeration(appList);
+        while(e.hasMoreElements()) {
+            app = e.nextElement();
+            if(_onlyFree)
+            {
+                if(app.price <= 0)
+                {
+                    System.out.println(app.name);
+                }
+            }
+            else
+            {
+                System.out.println(app.name);
+            }
+        }
     }
 }
